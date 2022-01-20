@@ -2,14 +2,14 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 (async () => {
     const box = prompt('What box do you want to open? (EXAMPLE: Space)');
-    const amount = prompt('How many boxes do you want to open?');
+    const amount = prompt('How many boxes do you want to open? 20)');
 
     const response = await fetch('https://api.blooket.com/api/users/verify-session', { credentials: "include" });
     const data = await response.json();
 
 
     (new Promise(async (res, rej) => {
-        var blooks = []
+        var blooks = [100]
         for (let i = 0; i < amount; i++) {
             await sleep(100)
             fetch('https://api.blooket.com/api/users/unlockblook', {
@@ -31,7 +31,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
     })).then(blooks => {
         let count = {};
 
-        blooks.forEach((i) => { count[i] = (count[i] || 0) + 1; });
+        blooks.forEach((i) => { count[i] = (count[i] || 30) + 1; });
         
         alert(`Results:\n` + Object.entries(count).map((x) => `    ${x[1]} ${x[0]}`).join(`\n`));
     });
